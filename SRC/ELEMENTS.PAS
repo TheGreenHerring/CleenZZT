@@ -23,6 +23,28 @@
 	SOFTWARE.
 }
 
+{
+	Edited by The Green Herring for
+	CleenZZT v1.0
+
+	Comments out ElementWaterTouch, ElementFakeTouch, and the message in
+	ElementForestTouch, as well as the TouchProc entries for Water and Fake (so
+	that they fall back on the defaults), to do what CleanZZT did with hex
+	editing but perfectly this time.
+
+	My edits can be found by using "Find" to search for "-TGH!".
+	Note that this was only tested with my game Cyber Purge. Be warned that my
+	edits may result in the built EXE not retaining the original memory layout!
+	Thus, this is not recommended for any games using tricks that rely on it!
+
+	All licensing above and with the rest of the source applies to this edit.
+	If you think of any improvements you want to make, please do!
+
+	Thank you,
+	The Green Herring
+	February 16, 2021
+}
+
 {$F+}
 {$I-}
 unit Elements;
@@ -1196,13 +1218,17 @@ procedure ElementForestTouch(x, y: integer; sourceStatId: integer; var deltaX, d
 		BoardDrawTile(x, y);
 
 		SoundQueue(3, #57#1);
-
+{Comment out this message since we don't want this showing -TGH!}
+{
 		if MessageForestNotShown then begin
 			DisplayMessage(200, 'A path is cleared through the forest.');
 		end;
 		MessageForestNotShown := false;
+}
 	end;
 
+{Comment out ElementFakeTouch since we're using ElementDefaultTouch instead -TGH! 2/16/2021}
+{
 procedure ElementFakeTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	begin
 		if MessageFakeNotShown then begin
@@ -1210,6 +1236,7 @@ procedure ElementFakeTouch(x, y: integer; sourceStatId: integer; var deltaX, del
 		end;
 		MessageFakeNotShown := false;
 	end;
+}
 
 procedure ElementBoardEdgeTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	var
@@ -1257,11 +1284,14 @@ procedure ElementBoardEdgeTouch(x, y: integer; sourceStatId: integer; var deltaX
 		end;
 	end;
 
+{Comment out ElementWaterTouch since we're using ElementDefaultTouch instead -TGH! 2/16/2021}
+{
 procedure ElementWaterTouch(x, y: integer; sourceStatId: integer; var deltaX, deltaY: integer);
 	begin
 		SoundQueue(3, #64#1#80#1);
 		DisplayMessage(100, 'Your way is blocked by water.');
 	end;
+}
 
 procedure DrawPlayerSurroundings(x, y: integer; bombPhase: integer);
 	var
@@ -1562,7 +1592,12 @@ procedure InitElementDefs;
 		ElementDefs[19].Color := $F9;
 		ElementDefs[19].PlaceableOnTop := true;
 		ElementDefs[19].EditorCategory := CATEGORY_TERRAIN;
+
+{Comment out the TouchProc for water since we're using ElementDefaultTouch instead -TGH! 2/16/2021}
+{
 		ElementDefs[19].TouchProc := ElementWaterTouch;
+}
+
 		ElementDefs[19].EditorShortcut := 'W';
 		ElementDefs[19].Name := 'Water';
 		ElementDefs[19].CategoryName := 'Terrains:';
@@ -1915,7 +1950,12 @@ procedure InitElementDefs;
 		ElementDefs[27].EditorCategory := CATEGORY_TERRAIN;
 		ElementDefs[27].PlaceableOnTop := true;
 		ElementDefs[27].Walkable := true;
+
+{Comment out the TouchProc for fakes since we're using ElementDefaultTouch instead -TGH! 2/16/2021}
+{
 		ElementDefs[27].TouchProc := ElementFakeTouch;
+}
+
 		ElementDefs[27].EditorShortcut := 'A';
 		ElementDefs[27].Name := 'Fake';
 
