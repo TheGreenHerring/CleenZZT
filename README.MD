@@ -1,6 +1,7 @@
 # CleenZZT v1.0
-# by The Green Herring
-# February 16, 2021
+by The Green Herring
+
+February 16, 2021
 
 This an edited Reconstruction of ZZT-built EXE that disables the messages that appear when you cross a fake or a forest for the first time in a ZZT session, and the message and sound effect queued whenever you touch water.
 
