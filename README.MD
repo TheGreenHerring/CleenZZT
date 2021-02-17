@@ -1,3 +1,23 @@
+# CleenZZT v1.0
+# by The Green Herring
+# February 16, 2021
+
+This an edited Reconstruction of ZZT-built EXE that disables the messages that appear when you cross a fake or a forest for the first time in a ZZT session, and the message and sound effect queued whenever you touch water.
+
+"But wait," you say, "isn't there already a CleanZZT that does these?"
+
+Yes, there is, but there's a problem: it was made before Reconstruction of ZZT existed, and was created by decompressing ZZT.EXE, hex-editing it, and then recompressing it. Because of this, it doesn't actually disable these things, it just zeroes out the relevant string and sound entries for them, because that's easier to do when you're hex-editing an EXE that (at the time) didn't have any source code available. Because of this, if you should, say, have a message on screen or a sound effect playing when you touch water, the blank message and sound queue will override them both.
+
+This take on CleanZZT, henceforth known as CleenZZT, actually does disable these things by taking asie's Reconstruction of ZZT and commenting out the relevant entries in ELEMENTS.PAS. This means ElementWaterTouch, ElementFakeTouch, and the message in ElementForestTouch are commented out. I also commented out the TouchProc entries for Water and Fake so that they fall back on ElementDefaultTouch. As a result, touching these things has no effect on the message or sound systems, fully accomplishing what CleanZZT was intended to do. All other source files are identical to the original Reconstruction of ZZT downloaded from the GitHub master on February 16, 2021, dated February 11, 2021.
+
+Note, however, that I only tested this with my game Cyber Purge, shortly before I released it. The fact that I commented out entire procedures means the memory layout of the executable may not match the memory layout of the original ZZT.EXE. Because of this, THIS IS NOT RECOMMENDED FOR GAMES USING TRICKS THAT RELY ON THAT LAYOUT.
+
+This EXE and its source code are released under the same MIT license as the original Reconstruction of ZZT, provided alongside this EXE as well as the source. If you can think of any improvements on this edit you want to make, please do!
+
+Thank you, and enjoy!
+
+The original Reconstruction of ZZT readme follows:
+
 # The Reconstruction of ZZT
 
 The Reconstruction of ZZT is a reverse-engineered recreation of the source code to the last official release of
